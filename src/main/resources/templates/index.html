@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,25 +17,27 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    
-  
+
+
     <style>
-        .links{
+        .links {
             color: white;
         }
-        .cardMenu{
+
+        .cardMenu {
             margin-left: 30%;
             margin-top: 3%;
         }
     </style>
 </head>
+
 <body>
     <!--HighChart -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
- <script th:inline="javascript">
+    <script th:inline="javascript">
         /*<![CDATA[*/
         var valores = /*[[${valores}]]*/ "null";
         console.log(valores)
@@ -88,39 +90,40 @@
 
 
     <div>
-        <div class="row cardMenu" >
+        <div class="row cardMenu">
             <div class="col s12 m2">
-            <div class="card red darken-1">
-                <div class="card-content white-text">
-                <span class="card-title">Despezas</span>
-                <a href="/contas/listar" class="links" th:text="${ 'Valor: R$' + contas}">0,00</a>
+                <div class="card red darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Despezas</span>
+                        <a href="/contas/listar" class="links" th:text="${ 'Valor: R$' + contas}">0,00</a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <div class="col s12 m2">
                 <div class="card blue darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Lançamentos</span>
-                    <a href="/lancamentos/listar" class="links" th:text="${ 'Valor: R$' + lancamentos}">0,00</a>
-                </div>
+                    <div class="card-content white-text">
+                        <span class="card-title">Lançamentos</span>
+                        <a href="/lancamentos/listar" class="links" th:text="${ 'Valor: R$' + lancamentos}">0,00</a>
+                    </div>
                 </div>
             </div>
 
             <div class="col s12 m2">
                 <div class="card yellow darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Emprestimos</span>
-                    <a href="/emprestimos/listar" class="links" th:text="${ 'Valor: R$' + emprestimos}">0,00</a>
+                    <div class="card-content white-text">
+                        <span class="card-title">Emprestimos</span>
+                        <a href="/emprestimos/listar" class="links" th:text="${ 'Valor: R$' + emprestimos}">0,00</a>
+                    </div>
                 </div>
-                </div>
-            </div>   
+            </div>
         </div>
-        
+
         <div class="container">
-        	<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    	</div>
-        
+            <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+        </div>
+
     </div>
 </body>
+
 </html>
