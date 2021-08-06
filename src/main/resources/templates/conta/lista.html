@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+        <div class="container" style="margin-top: 5%;">
+            <div class="box">
+                <div class="col s6 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <h1 style="margin-left: 25px;margin-bottom: 0px;"> Despezas</h1>
+                            <div class="fixed-action-btn">
+							  <a class="btn-floating btn-large red">
+							    <i class="large material-icons">mode_edit</i>
+							  </a>
+							  <ul>
+							    <li><a class="btn-floating blue" href="/"><i class="large material-icons">insert_chart</i></a></li>
+							    <li><a class="btn-floating green darken-1" href="/contas/cadastrar"><i class="large material-icons">add_circle_outline</i></a></li>
+							  </ul>
+							</div>
+                            
+                        </div>
+                        <div class="card-content">
+
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Data Cadastro</th>
+                                        <th>Status</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each = "conta : ${contas}">
+                                        <td th:text="${conta.nomeConta}"></td>
+                                        <td th:text="${#numbers.formatCurrency(conta.valor)}"></td>
+                                        <td th:text="${#dates.format(conta.dataCadastro,'dd/MM/yyyy')}"></td>
+                                        <td th:text="${conta.status}"></td>
+                                        <td colspan="2">
+                                            <a class="waves-effect waves-light btn" th:href="@{/contas/alterar/{id}(id=${conta.id})}" id="edit" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">edit</i>
+                                                </span>
+                                            </a>
+                                            <a class="waves-effect waves-light btn red" th:href="@{/contas/delete/{id}(id=${conta.id})}" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">close</i>
+                                                </span>
+                                            </a>
+                                            
+                                            <a class="waves-effect waves-light btn blue" th:href="@{/contas/open/{id}(id=${conta.id})}" role="button">
+                                                <span title="Abrir" aria-hidden="true">
+                                                    <i class="small material-icons">play_arrow</i>
+                                                </span>
+                                            </a>
+                                            
+                                             <a class="waves-effect waves-light btn red" th:href="@{/contas/close/{id}(id=${conta.id})}" role="button">
+                                                <span title="OK" aria-hidden="true">
+                                                    <i class="small material-icons">stop</i>
+                                                </span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

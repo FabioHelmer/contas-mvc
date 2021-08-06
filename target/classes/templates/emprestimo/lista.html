@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+        <div class="container" style="margin-top: 5%;">
+            <div class="box">
+                <div class="col s6 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <h1 style="margin-left: 25px;margin-bottom: 0px;">Emprestimos e Pagamentos</h1>
+                            <div class="fixed-action-btn">
+							  <a class="btn-floating btn-large red">
+							    <i class="large material-icons">mode_edit</i>
+							  </a>
+							  <ul>
+							    <li><a class="btn-floating blue" href="/"><i class="large material-icons">insert_chart</i></a></li>
+							    <li><a class="btn-floating green darken-1" href="/emprestimos/cadastrar"><i class="large material-icons">add_circle_outline</i></a></li>
+							  </ul>
+							</div>
+                        </div>
+                        <div class="card-content">
+
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Conta</th>
+                                        <th>Valor</th>
+                                        <th>parcelas</th>
+                                        <th>Data Cadastro</th>
+                                        <th>Status</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each = "emprestimo : ${emprestimos}">
+                                        <td th:text="${emprestimo.nomePessoa}"></td>
+                                        <td th:text="${emprestimo.nomeConta}"></td>
+                                        <td th:text="${#numbers.formatCurrency(emprestimo.valor)}"></td>
+                                        <td th:text="${emprestimo.parcelar == true} ? ${emprestimo.parcelaAtual+'/'+emprestimo.numParcelas} : ''" />
+                                        <td th:text="${#dates.format(emprestimo.dataCadastro,'dd/MM/yyyy')}"></td>
+                                        <td th:text="${emprestimo.status}"></td>
+                                        <td colspan="2">
+                                            <a class="waves-effect waves-light btn" th:href="@{/emprestimos/alterar/{id}(id=${emprestimo.id})}" id="edit" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">edit</i>
+                                                </span>
+                                            </a>
+                                            <a class="waves-effect waves-light btn red" th:href="@{/emprestimos/delete/{id}(id=${emprestimo.id})}" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">close</i>
+                                                </span>
+                                            </a>
+                                            
+                                            <a class="waves-effect waves-light btn blue" th:href="@{/emprestimos/open/{id}(id=${emprestimo.id})}" role="button">
+                                                <span title="Abrir" aria-hidden="true">
+                                                    <i class="small material-icons">play_arrow</i>
+                                                </span>
+                                            </a>
+                                            
+                                             <a class="waves-effect waves-light btn red" th:href="@{/emprestimos/close/{id}(id=${emprestimo.id})}" role="button">
+                                                <span title="OK" aria-hidden="true">
+                                                    <i class="small material-icons">stop</i>
+                                                </span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lancamentos</title>
+</head>
+
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+        <div class="container" style="margin-top: 5%;">
+            <div class="box">
+                <div class="col s6 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <h1 style="margin-left: 25px;margin-bottom: 0px;"> Lançamentos</h1>
+                            <div class="fixed-action-btn">
+							  <a class="btn-floating btn-large red">
+							    <i class="large material-icons">mode_edit</i>
+							  </a>
+							  <ul>
+							    <li><a class="btn-floating blue" href="/"><i class="large material-icons">insert_chart</i></a></li>
+							    <li><a class="btn-floating green darken-1" href="/lancamentos/cadastrar"><i class="large material-icons">add_circle_outline</i></a></li>
+							  </ul>
+							</div>
+                        </div>
+                        <div class="card-content">
+
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Data Cadastro</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each = "lancamento : ${lancamentos}">
+                                        <td th:text="${lancamento.nome}"></td>
+                                        <td th:text="${#numbers.formatCurrency(lancamento.valor)}"></td>
+                                        <td th:text="${#dates.format(lancamento.dataCadastro,'dd/MM/yyyy')}"></td>
+                                        <td colspan="2">
+                                            <a class="waves-effect waves-light btn" th:href="@{/lancamentos/alterar/{id}(id=${lancamento.id})}" id="edit" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">edit</i>
+                                                </span>
+                                            </a>
+                                            <a class="waves-effect waves-light btn red" th:href="@{/lancamentos/delete/{id}(id=${lancamento.id})}" role="button">
+                                                <span title="Editar" aria-hidden="true">
+                                                    <i class="small material-icons">remove</i>
+                                                </span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>

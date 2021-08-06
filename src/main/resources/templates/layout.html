@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>Contas</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/image/favicon.png" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+
+
+</head>
+
+<body>
+    <script th:inline="javascript">
+        function toastr(message) {
+            M.toast({ html: message, classes: 'rounded red' })
+        }
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+        });
+
+        $(document).ready(function(){
+           $('.fixed-action-btn').floatingActionButton();
+        });
+
+
+        /*<![CDATA[*/
+        var erros = /*[[${erros}]]*/ "null"
+        console.log(erros)
+        var erroCloseOpen = /*[[${erroCloseOpen}]]*/ "null"
+   
+        if (erroCloseOpen != null) {
+            console.log(erroCloseOpen.message)
+            M.Toast.dismissAll();
+            toastr(erroCloseOpen.message)
+        }
+
+        if (erros != null) {
+            M.Toast.dismissAll();
+
+            for (erro of erros) {
+                toastr(erro.defaultMessage)
+            }
+        }
+
+        /*]]>*/
+    </script>
+
+    <div class="layout-main">
+        <section layout:fragment="corpo">
+            <div>conteudo principal das páginas</div>
+        </section>
+    </div>
+
+    <footer th:replace="fragments/footer :: rodape">
+        <div>footer</div>
+    </footer>
+</body>
+
+</html>
