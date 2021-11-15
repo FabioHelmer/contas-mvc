@@ -30,6 +30,7 @@ public class UserService implements GenericService<User, String> {
 			entity.setDataCadastro(new Date());
 			return userRepository.save(entity);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -64,6 +65,11 @@ public class UserService implements GenericService<User, String> {
 	public void deleteById(String id) {
 		User entity = getById(id);
 		delete(entity);
+	}
+
+	public List<Object[]> getLancamentosPorMes() {
+		List<Object[]> lista = userRepository.getLancamentosPorMes("2062973d-ac2c-4a71-90a9-a2b0d8109670");
+		return lista;
 	}
 
 }

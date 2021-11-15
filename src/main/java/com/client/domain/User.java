@@ -36,7 +36,7 @@ public class User {
 	@Column(name = "email", nullable = false, unique = true, length = 100)
 	private String email;
 
-	@Column(name = "senha", length = 100, nullable = false)
+	@Column(name = "senha", length = 15, nullable = false)
 	@NotNull(message = "Senha é obrigatório")
 	@NotBlank(message = "Senha não pode está em branco")
 	@Length(min = 3, message = "Tamanho Inválido")

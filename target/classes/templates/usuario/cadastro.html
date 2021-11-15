@@ -37,7 +37,7 @@ layout:decorate="~{layout}">
                             <i class="large material-icons" style="margin-left: 45%; color: #25a69a;">account_circle</i>
                         </div>
                         <div class="card-content">
-                            <form class="col s12" th:action="@{/admin/salvar}" method="POST" th:object="${user}">
+                            <form class="col s12" th:action="@{/admin/salvar}" method="POST" th:object="${usuario}">
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input id="nome" type="text" class="validate" th:field ="*{nome}" >
@@ -70,7 +70,7 @@ layout:decorate="~{layout}">
                                 </div>
 
                                 <div class="input-field col s6">
-                                    <input id="cpf" type="text" name="cpf" class="validate" th:field ="*{CPF}">
+                                    <input id="cpf" type="text" name="CPF" class="validate" th:field ="*{CPF}">
                                     <label for="cpf">CPF</label>
                                 </div>
                             </div>

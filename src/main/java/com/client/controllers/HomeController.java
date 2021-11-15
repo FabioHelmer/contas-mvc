@@ -2,6 +2,7 @@ package com.client.controllers;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,27 @@ public class HomeController {
 		valores.put("Emprestimos", emprestimos);
 		mv.addObject("valores", valores);
 
+		List<Object[]> resultLancamentoPorMes = homeService.somaLancamentosPorMes();
+		Map<String, BigDecimal> lancamentosMes = new LinkedHashMap<>();
+
+		for (Object[] linha : resultLancamentoPorMes) {
+			String mes = "";
+			String valor = "";
+			if (linha[0] != null) {
+				mes = (linha[0].toString());
+				mes = mes.replace(".0", "");
+			}
+			if (linha[1] != null) {
+				valor = linha[1].toString();
+			}
+
+			lancamentosMes.put(mes, new BigDecimal(valor));
+		}
 
 		mv.addObject("lancamentos", lancamentos);
 		mv.addObject("contas", contas);
 		mv.addObject("emprestimos", emprestimos);
+		mv.addObject("lancamentosMes", lancamentosMes);
 		mv.addObject("maxGrahBar", emprestimos.add(contas).add(lancamentos));
 		mv.addObject("ishome", "true");
 

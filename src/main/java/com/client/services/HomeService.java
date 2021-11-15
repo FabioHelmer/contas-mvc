@@ -1,6 +1,7 @@
 package com.client.services;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class HomeService {
 	@Autowired
 	EmprestimoPagarService emprestimoPagarService;
 
+	@Autowired
+	UserService userService;
+
 	public BigDecimal getSomalancamentos() {
 		return lancamentoService.getSomaLancamentos();
 
@@ -31,8 +35,8 @@ public class HomeService {
 		return emprestimoPagarService.getSomaEmprestimos();
 	}
 
-	private void getSomaLancamentosById() {
-
+	public List<Object[]> somaLancamentosPorMes() {
+		return userService.getLancamentosPorMes();
 	}
 
 }

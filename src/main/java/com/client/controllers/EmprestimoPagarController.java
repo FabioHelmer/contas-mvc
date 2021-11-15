@@ -30,7 +30,10 @@ public class EmprestimoPagarController {
 	public ModelAndView cadastrar() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("emprestimo/cadastro");
-		mv.addObject("emprestimo", new EmprestimoPagar());
+		EmprestimoPagar emprestimoPagar = new EmprestimoPagar();
+		emprestimoPagar.setNumParcelas(0);
+		emprestimoPagar.setParcelaAtual(0);
+		mv.addObject("emprestimo", emprestimoPagar);
 		return mv;
 	}
 
