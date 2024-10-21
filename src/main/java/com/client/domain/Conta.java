@@ -32,7 +32,7 @@ public class Conta {
 
 	@NotNull(message = "Nome não pode ser nulo")
 	@NotBlank(message = "Nome não pode ser vazio")
-	@Column(name = "nome", nullable = false, unique = true, length = 100)
+	@Column(name = "nome_conta", nullable = false, unique = true, length = 100)
 	private String nomeConta;
 
 	@Column(name = "data_cadastro", nullable = false)

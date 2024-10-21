@@ -32,7 +32,7 @@ public class EmprestimoPagar {
 
 	@NotNull(message = "Nome não pode ser nulo")
 	@NotBlank(message = "Nome é obrigatorio")
-	@Column(name = "pessoa", nullable = false, unique = false, length = 100)
+	@Column(name = "nome_pessoa", nullable = false, unique = false, length = 100)
 	private String nomePessoa;
 
 	@NotNull(message = "Nome da conta não pode ser nulo")
